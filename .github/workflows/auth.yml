@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "pnpm" # enable pnpm caching
+          cache: "pnpm" # use pnpm cache
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
