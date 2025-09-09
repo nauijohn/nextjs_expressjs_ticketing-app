@@ -34,6 +34,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
@@ -46,7 +47,7 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
-    # needs: build
+    needs: build
 
     defaults:
       run:
