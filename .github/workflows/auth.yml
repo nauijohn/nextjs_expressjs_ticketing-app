@@ -14,30 +14,36 @@ on:
       - "auth/**"
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-  #   defaults:
-  #     run:
-  #       working-directory: ./auth
+    defaults:
+      run:
+        working-directory: ./comments
 
-  #   steps:
-  #     - uses: actions/checkout@v4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: '20'
-  #         cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm" # enable pnpm caching
 
-  #     - name: Install dependencies
-  #       run: npm install
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
 
-  #     - name: Build project
-  #       run: npm run build
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
 
-  #     - name: Run tests
-  #       run: npm test
+      - name: Build project
+        run: pnpm build
+
+      - name: Run tests
+        run: pnpm test
 
   docker:
     runs-on: ubuntu-latest
