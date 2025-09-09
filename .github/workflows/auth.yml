@@ -19,7 +19,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./comments
+        working-directory: ./auth
 
     steps:
       - name: Checkout repository
