@@ -1,0 +1,19 @@
+apiVersion: skaffold/v4beta13
+kind: Config
+
+build:
+  local:
+    push: false
+  artifacts:
+    - image: anthonynaui/nextjs_expressjs_ticketing-app_auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+        target: deps
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+manifests:
+  rawYaml:
+    - ./infra/k8s/*
